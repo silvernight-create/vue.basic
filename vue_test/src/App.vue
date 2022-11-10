@@ -3,8 +3,8 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :receive="receive"></MyHeader>
-        <MyList :todos="todos"></MyList>
-       <MyFooter></MyFooter>
+        <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></MyList>
+       <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"></MyFooter>
         
       </div>
     </div>
@@ -40,10 +40,25 @@ import  MyFooter  from './components/MyFooter.vue'
         methods: {
          receive(e){
           this.todos.unshift(e)
-
-        
+         },
+         checkTodo(id){ 
+          this.todos.forEach((todo)=>{  
+            if(todo.id ===id)
+            todo.done=!todo.done
+          })
+         },
+         deleteTodo(id){
+           this.todos = this.todos.filter( todo=>todo.id !== id )
+         },
+         //全讯或全不选
+         checkAllTodo(done){
+          this.todos.forEach(todo=>todo.done=done)
+         },
+         clearAllTodo(){
+        this.todos =  this.todos.filter((todo)=>{
+            return !todo.done
+          })
          }
-         
         },
 
     }

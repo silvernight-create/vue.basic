@@ -1,10 +1,12 @@
 <template>
     <li>
         <label>
-            <input type="checkbox" :checked="todo.done"/>
+          <!-- 不推荐 会修改props -->
+          <!-- <input type="checkbox" v-model="todo.done"/> -->
+            <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
             <span>{{todo.title}}</span>
         </label>
-        <button class="btn btn-danger" style="display:none">删除</button>
+        <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
       </li>
 </template>
 <script>
@@ -18,7 +20,19 @@ export default {
 
     }
   },
-  props:['todo']
+  props:['todo','checkTodo','deleteTodo'],
+  methods:{
+    handleCheck(id){
+      this.checkTodo(id)
+
+    },
+    handleDelete(id){
+      if(confirm('确认删除吗？')){
+        this.deleteTodo(id)
+      }
+
+    }
+  },
 
 }
 </script>
@@ -51,5 +65,11 @@ li:before{
 }
 li:last-child{
   border-bottom: none;
+}
+li:hover{
+  background-color: gray;
+}
+li:hover button{
+  display: block;
 }
 </style>
