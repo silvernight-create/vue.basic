@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,22 +12,32 @@
 </head>
 
 <body>
-<div id="root">
-    <h1>Hello,{{name}} </h1>
-</div>
+    <div id="root">
+        <h1>插值语法</h1>
+        <h3>你好，{{name}} </h3>
+        <hr />
+        <h1>指令语法</h1>
+        <a v-bind:href="url">点击跳转bilibili主页</a>
+
+        
+
+    </div>
 
 
 
 
+   
+</body>
 <script>
     Vue.config.productionTip = false
 
     new Vue({
-        el:'#root',  //el用于指定当前Vue实例为哪个容器服务
-        data:{
-            name:"银夜"
+        el: '#root',  //el用于指定当前Vue实例为哪个容器服务
+        data: {
+            name: "银夜",
+            url:"https://space.bilibili.com/40047545",
         }
-     })
+    })
+    
 </script>
-</body>
 </html>
